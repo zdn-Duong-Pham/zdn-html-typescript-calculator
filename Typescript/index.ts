@@ -1,10 +1,10 @@
 // Query selectors
-const display = document.getElementById('display') as HTMLDivElement;
-const buttons = document.querySelectorAll('.button') as NodeListOf<HTMLDivElement>;
-const equal = document.getElementById('equal') as HTMLDivElement;
+const display = document.getElementById("display") as HTMLDivElement;
+const buttons = document.querySelectorAll(".button") as NodeListOf<HTMLDivElement>;
+const equal = document.getElementById("equal") as HTMLDivElement;
 
 // Calculator state
-let currentVal = '0';
+let currentVal = "0";
 let operation: string | undefined;
 let firstVal: number | undefined;
 
@@ -14,7 +14,7 @@ function updateDisplay(val: string) {
 }
 
 function clearDisplay() {
-  currentVal = '0';
+  currentVal = "0";
   operation = undefined;
   firstVal = undefined;
   updateDisplay(currentVal);
@@ -26,21 +26,21 @@ function handleOperation(op: string) {
   } else {
     const secondVal = parseFloat(currentVal);
     switch (operation) {
-      case '+':
+      case "+":
         firstVal += secondVal;
         break;
-      case '-':
+      case "-":
         firstVal -= secondVal;
         break;
-      case '*':
+      case "*":
         firstVal *= secondVal;
         break;
-      case '/':
+      case "/":
         firstVal /= secondVal;
         break;
     }
   }
-  currentVal = '0';
+  currentVal = "0";
   operation = op;
 }
 
@@ -48,16 +48,16 @@ function handleEqual() {
   if (firstVal !== undefined && operation !== undefined) {
     const secondVal = parseFloat(currentVal);
     switch (operation) {
-      case '+':
+      case "+":
         currentVal = (firstVal + secondVal).toString();
         break;
-      case '-':
+      case "-":
         currentVal = (firstVal - secondVal).toString();
         break;
-      case '*':
+      case "*":
         currentVal = (firstVal * secondVal).toString();
         break;
-      case '/':
+      case "/":
         currentVal = (firstVal / secondVal).toString();
         break;
     }
@@ -68,23 +68,28 @@ function handleEqual() {
 }
 
 // Event listeners
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
     const buttonVal = button.textContent;
-    if (buttonVal === 'C') {
+    if (buttonVal === "C") {
       clearDisplay();
-    } else if (buttonVal === '+' || buttonVal === '-' || buttonVal === '*' || buttonVal === '/') {
+    } else if (
+      buttonVal === "+" ||
+      buttonVal === "-" ||
+      buttonVal === "*" ||
+      buttonVal === "/"
+    ) {
       handleOperation(buttonVal);
-    } else if (buttonVal === '=') {
+    } else if (buttonVal === "=") {
       handleEqual();
-    } else if (buttonVal === '&larr;') {
+    } else if (buttonVal === "&larr;") {
       currentVal = currentVal.slice(0, -1);
-      if (currentVal === '') {
-        currentVal = '0';
+      if (currentVal === "") {
+        currentVal = "0";
       }
       updateDisplay(currentVal);
     } else {
-      if (currentVal === '0') {
+      if (currentVal === "0") {
         currentVal = buttonVal!;
       } else {
         currentVal += buttonVal!;
