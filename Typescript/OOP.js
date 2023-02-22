@@ -27,7 +27,7 @@ var Calculator = /** @class */ (function () {
                 else if (buttonVal === "=") {
                     _this.handleEqual();
                 }
-                else if (buttonVal === "&larr;") {
+                else if (buttonVal === "\u2190") {
                     _this.handleBackspace();
                 }
                 else {

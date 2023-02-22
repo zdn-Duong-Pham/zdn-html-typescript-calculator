@@ -82,7 +82,7 @@ buttons.forEach((button) => {
       handleOperation(buttonVal);
     } else if (buttonVal === "=") {
       handleEqual();
-    } else if (buttonVal === "&larr;") {
+    } else if (buttonVal === `←`) {
       currentVal = currentVal.slice(0, -1);
       if (currentVal === "") {
         currentVal = "0";

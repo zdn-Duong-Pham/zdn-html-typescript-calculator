@@ -34,7 +34,7 @@ class Calculator {
             this.handleOperation(buttonVal);
           } else if (buttonVal === "=") {
             this.handleEqual();
-          } else if (buttonVal === "&larr;") {
+          } else if (buttonVal === `←`) {
             this.handleBackspace();
           } else {
             this.handleNumber(buttonVal!);
