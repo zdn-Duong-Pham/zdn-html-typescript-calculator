@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quadratic Equation Calculator</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Quadratic Equation Calculator</h1>
+      <form>
+        <label for="a">a:</label>
+        <input type="number" id="a" name="a" required /><br /><br />
+        <label for="b">b:</label>
+        <input type="number" id="b" name="b" required /><br /><br />
+        <label for="c">c:</label>
+        <input type="number" id="c" name="c" required /><br /><br />
+        <input type="submit" value="Calculate" />
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function createQuadraticCalculator() {
+        function quadraticCalculator(a, b, c) {
+          const discriminant = b ** 2 - 4 * a * c;
+          if (discriminant >= 0) {
+            const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            return [x1, x2];
+          } else {
+            return null;
+          }
+        }
+        return quadraticCalculator;
+      }
+
+      const quadraticCalculator = createQuadraticCalculator();
+
+      const form = document.querySelector("form");
+      const resultDiv = document.querySelector("#result");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const a = Number(document.querySelector("#a").value);
+        const b = Number(document.querySelector("#b").value);
+        const c = Number(document.querySelector("#c").value);
+        const roots = quadraticCalculator(a, b, c);
+        if (roots !== null) {
+          const x1 = roots[0];
+          const x2 = roots[1];
+          resultDiv.innerHTML = `The roots are x
+        = ${x1.toFixed(2)} and ${x2.toFixed(2)}`;
+        } else {
+          resultDiv.innerHTML =
+            '<div class="error">The equation has no real roots.</div>';
+        }
+      });
+    </script>
+  </body>
+</html>
